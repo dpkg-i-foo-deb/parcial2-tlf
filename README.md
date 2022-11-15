@@ -1,2 +1,5 @@
 # parcial2-tlf
-Creando Expresiones Regulares Pichas
+
+# El lenguaje para el que realizamos las expresiones regulares es scilab
+
+# Vamos a utilizar Golang para construir el analizador léxico
