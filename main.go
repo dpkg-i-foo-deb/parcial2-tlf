@@ -1,7 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"analizador/lector"
+	"analizador/salida"
+)
 
+// NO TOCAR
 func main() {
-	fmt.Println("Holis")
+
+	lector.LeerArchivo()
+
+	salida.EscribirArchivo()
+
 }
