@@ -1,9 +1,9 @@
 package salida
 
 import (
+	"analizador/lector"
 	"errors"
 	"os"
-	"test-lexico/lector"
 )
 
 func EscribirArchivo() {
