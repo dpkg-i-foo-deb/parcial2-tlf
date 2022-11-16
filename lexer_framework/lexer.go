@@ -25,15 +25,6 @@ func init() {
 }
 
 func initTokens() {
-	Operadores = []string{}
-	Keywords = []string{
-		"PUBLIC",
-		"STATIC",
-		"VOID",
-		"MAIN",
-		"INT",
-		"STRICT",
-	}
 	Tokens = []string{
 		"COMMENTARIO",
 		"ID",
@@ -44,15 +35,13 @@ func initTokens() {
 		"SEPARADOR_SENTENCIAS",
 		"OPERADOR_TERMINAL",
 		"ULTIMO_INDICE",
+		"CICLOS",
 	}
 
 	Unrecognized_Tokens = []string{
 		"NOT_VALID",
 	}
 
-	Tokens = append(Tokens, Keywords...)
-	Tokens = append(Tokens, Operadores...)
-	Tokens = append(Tokens, Unrecognized_Tokens...)
 	TokenIds = make(map[string]int)
 	for i, tok := range Tokens {
 		TokenIds[tok] = i
@@ -61,33 +50,33 @@ func initTokens() {
 
 // Creates the lexer object and compiles the NFA.
 func initLexer() (*lexmachine.Lexer, error) {
-	lexer := lexmachine.NewLexer()
+	Lexer = lexmachine.NewLexer()
 
 	for _, lit := range Operadores {
 		r := "\\" + strings.Join(strings.Split(lit, ""), "\\")
-		lexer.Add([]byte(r), token(lit))
+		Lexer.Add([]byte(r), token(lit))
 	}
 	for _, name := range Keywords {
-		lexer.Add([]byte(strings.ToLower(name)), token(name))
+		Lexer.Add([]byte(strings.ToLower(name)), token(name))
 	}
 
-	lexer.Add([]byte(`//[^\n]*\n?`), token("COMMENT"))
-	lexer.Add([]byte(`\/\*([^*]|\r|\n|(\*+([^*\/]|\r|\n)))*\*\/`), token("COMMENTARIO"))
-	lexer.Add([]byte(`[+\-*\\\/\^]`), token("OPERADOR_ARITMETICO"))
-	lexer.Add([]byte(`(<=|<|>|>=|==|~=)`), token("OPERADOR_RELACIONAL"))
-	lexer.Add([]byte(`[|&~]`), token("OPERADOR_LOGICO"))
-	lexer.Add([]byte(`[=]`), token("OPERADOR_ASIGNACION"))
-	lexer.Add([]byte(`[,;]`), token("SEPARADOR_SENTENCIAS"))
-	lexer.Add([]byte(`[;]`), token("OPERADOR_TERMINAL"))
-	lexer.Add([]byte(`[$]`), token("ULTIMO_INDICE"))
-	lexer.Add([]byte("( |\t|\n|\r)+"), skip)
-	lexer.Add([]byte(`ñ`), unrecognized)
+	Lexer.Add([]byte(`//[^\n]*\n?`), token("COMMENT"))
+	Lexer.Add([]byte(`\/\*([^*]|\r|\n|(\*+([^*\/]|\r|\n)))*\*\/`), token("COMMENTARIO"))
+	Lexer.Add([]byte(`[+\-*\\\/\^]`), token("OPERADOR_ARITMETICO"))
+	Lexer.Add([]byte(`(<=|<|>|>=|==|~=)`), token("OPERADOR_RELACIONAL"))
+	Lexer.Add([]byte(`[|&~]`), token("OPERADOR_LOGICO"))
+	Lexer.Add([]byte(`[=]`), token("OPERADOR_ASIGNACION"))
+	Lexer.Add([]byte(`[,;]`), token("SEPARADOR_SENTENCIAS"))
+	Lexer.Add([]byte(`[;]`), token("OPERADOR_TERMINAL"))
+	Lexer.Add([]byte(`[$]`), token("ULTIMO_INDICE"))
+	Lexer.Add([]byte("( |\t|\n|\r)+"), skip)
+	Lexer.Add([]byte(`ñ`), unrecognized)
 
-	err := lexer.Compile()
+	err := Lexer.Compile()
 	if err != nil {
 		return nil, err
 	}
-	return lexer, nil
+	return Lexer, nil
 }
 
 // a lexmachine.Action function which skips the match.
