@@ -1,9 +1,9 @@
 package main
 
 import (
-	"analizador/lector"
 	"analizador/lexer_framework"
 	"analizador/salida"
+	"analizador/tokens"
 
 	"fmt"
 	"log"
@@ -15,12 +15,51 @@ import (
 // NO TOCAR
 func main() {
 
-	s, err := lexer_framework.Lexer.Scanner([]byte(`$`))
+	lexer_framework.InitLexer()
+
+	compilarTokens()
+
+	compilarExpresiones()
+
+	lexer_framework.Compilar()
+
+	//lector.LeerArchivo()
+
+	analizar()
+
+	salida.EscribirArchivo()
+
+}
+
+func compilarExpresiones() {
+	tokens.AgregarComentarios()
+	tokens.AgregarOperadores()
+	tokens.AgregarSeparadorSentencias()
+}
+
+func compilarTokens() {
+	var elementos []string
+
+	elementos = append(elementos, tokens.Operadores...)
+	elementos = append(elementos, tokens.Comentarios...)
+	elementos = append(elementos, tokens.SeparadorSentencias...)
+
+	lexer_framework.TokenIds = make(map[string]int)
+	for i, tok := range elementos {
+		lexer_framework.TokenIds[tok] = i
+	}
+
+	//Esto se hace de último
+	lexer_framework.Tokens = elementos
+}
+
+func analizar() {
+	s, err := lexer_framework.Lexer.Scanner([]byte(`+`))
 
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println("Type    | Lexeme     | Position")
+	fmt.Println("Tipo    | Lexema     | Posición")
 	fmt.Println("--------+------------+------------")
 	for tok, err, eof := s.Next(); !eof; tok, err, eof = s.Next() {
 		if ui, is := err.(*machines.UnconsumedInput); is {
@@ -42,9 +81,4 @@ func main() {
 			token.EndLine,
 			token.EndColumn)
 	}
-
-	lector.LeerArchivo()
-
-	salida.EscribirArchivo()
-
 }
