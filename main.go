@@ -4,7 +4,7 @@ import (
 	"analizador/lector"
 	"analizador/lexer_framework"
 	"analizador/salida"
-	"analizador/tokens"
+
 	"fmt"
 	"log"
 
@@ -14,8 +14,6 @@ import (
 
 // NO TOCAR
 func main() {
-
-	tokens.InicializaPalabrasReservadas()
 
 	s, err := lexer_framework.Lexer.Scanner([]byte(`$`))
 
