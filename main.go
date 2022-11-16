@@ -1,6 +1,7 @@
 package main
 
 import (
+	"analizador/lector"
 	"analizador/lexer_framework"
 	"analizador/salida"
 	"analizador/tokens"
@@ -23,7 +24,7 @@ func main() {
 
 	lexer_framework.Compilar()
 
-	//lector.LeerArchivo()
+	lector.LeerArchivo()
 
 	analizar()
 
@@ -54,12 +55,12 @@ func compilarTokens() {
 }
 
 func analizar() {
-	s, err := lexer_framework.Lexer.Scanner([]byte(`+`))
+	s, err := lexer_framework.Lexer.Scanner([]byte(lector.Contenido))
 
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println("Tipo    | Lexema     | Posición")
+	fmt.Println("Tipo   		 | Lexema   		  |Posición		")
 	fmt.Println("--------+------------+------------")
 	for tok, err, eof := s.Next(); !eof; tok, err, eof = s.Next() {
 		if ui, is := err.(*machines.UnconsumedInput); is {
