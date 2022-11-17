@@ -58,7 +58,7 @@ func InicializarCondicionales() {
 
 	util.VerificarError(err)
 
-	exp, err = regexp.Compile(`\(?([0-9]|[a-z-A-Z])+(<=|==|>=|>|<|&&)([0-9]|[a-z-A-Z])+(&&([0-9]|[a-z-A-Z])+(<=|==|>=|>|<|&&)([0-9]|[a-z-A-Z])+)*\)?`)
+	exp, err = regexp.Compile(`\(([0-9]|[a-z-A-Z])+(<=|==|>=|>|<|&&)([0-9]|[a-z-A-Z])+(&&([0-9]|[a-z-A-Z])+(<=|==|>=|>|<|&&)([0-9]|[a-z-A-Z])+)*\)|([0-9]|[a-z-A-Z])+(<=|==|>=|>|<|&&)([0-9]|[a-z-A-Z])+(&&([0-9]|[a-z-A-Z])+(<=|==|>=|>|<|&&)([0-9]|[a-z-A-Z])+)*`)
 
 	Parametros_Condicional = util.Expresion{
 		Regex:     exp,
