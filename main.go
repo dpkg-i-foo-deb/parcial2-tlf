@@ -1,10 +1,10 @@
 package main
 
 import (
-	"analizador/lector"
-	"analizador/lexer_framework"
-	"analizador/salida"
-	"analizador/tokens"
+	"analizador-lexico/lector"
+	"analizador-lexico/lexer_framework"
+	"analizador-lexico/salida"
+	"analizador-lexico/tokens"
 
 	"fmt"
 	"log"
@@ -34,13 +34,14 @@ func main() {
 
 func compilarExpresiones() {
 
-	tokens.AgregarImpresiones()
 	tokens.AgregarCondicionales()
+	tokens.AgregarImpresiones()
+	tokens.AgregarNombresVariables()
 	tokens.AgregarOperadores()
 	tokens.AgregarSeparadorSentencias()
 	tokens.AgregarComentarios()
-	tokens.AgregarNombresVariables()
 	tokens.AgregarNumeros()
+
 	tokens.AgregarCadenas()
 }
 

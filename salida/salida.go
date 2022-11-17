@@ -1,7 +1,7 @@
 package salida
 
 import (
-	"analizador/lector"
+	"analizador-lexico/lector"
 	"errors"
 	"os"
 )

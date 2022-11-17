@@ -1,6 +1,6 @@
 package tokens
 
-import "analizador/lexer_framework"
+import "analizador-lexico/lexer_framework"
 
 var Imprimir = []string{
 	"IMPRIMIR",
