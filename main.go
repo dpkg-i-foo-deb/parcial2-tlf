@@ -20,6 +20,9 @@ func main() {
 							print('holis.txt',x1)
 						end
 
+				end
+				for (j = 2:n-1)
+    				var1 = j;
 				end`
 
 	analizador.Inicializar()
