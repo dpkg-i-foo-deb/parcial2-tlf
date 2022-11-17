@@ -89,5 +89,5 @@ func analizar() {
 }
 
 func controlarNoReconocido(token byte) {
-	fmt.Println("No Reconocido " + string(token))
+	fmt.Println("NO_RECONOCIDO " + string(token))
 }
