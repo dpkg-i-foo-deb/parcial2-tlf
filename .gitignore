@@ -15,3 +15,5 @@ salida.txt
 # vendor/
 .vscode
 test.txt
+#main
+main.go
