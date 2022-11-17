@@ -11,7 +11,14 @@ var Datos []byte
 var Texto string
 var Tokens []util.Token
 
-func Analizar() {
+func Leer() {
+
+	for ok := true; ok; ok = len(Datos) > 0 {
+		analizar()
+	}
+}
+
+func analizar() {
 
 	var identificado bool
 	//Pasamos el Texto por cada expresión regular
@@ -67,6 +74,7 @@ func Analizar() {
 
 func Inicializar() {
 	compilarExpresiones()
+	Texto = string(Datos)
 	Texto = IgnorarCampos(Texto)
 }
 

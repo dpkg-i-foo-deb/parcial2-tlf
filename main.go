@@ -2,42 +2,19 @@ package main
 
 import (
 	"analizador-lexico/analizador"
+	"analizador-lexico/lector"
 	"fmt"
 )
 
 func main() {
 
-	analizador.Texto = `variable1 = 2;
-				variable2 = 3;
-				variable4=3+4;
-				//Esto es un comentario
-				variable8="Cadena"
-				if (4>5) then
-				
-					else 
+	lector.LeerArchivo()
 
-						if (variable2<variable5) then
-							print('holis.txt',x1)
-						end
-
-				end
-				for (j = 2:n-1)
-    				var1 = j;
-				end
-				while i<5
-    				i = i + 1;
-				end
-				while i<5 && i<5 && i<5
-    				i = i + 1;
-				end`
+	analizador.Datos = []byte(lector.Contenido)
 
 	analizador.Inicializar()
 
-	analizador.Datos = []byte(analizador.Texto)
-
-	for ok := true; ok; ok = len(analizador.Datos) > 0 {
-		analizador.Analizar()
-	}
+	analizador.Leer()
 
 	imprimir()
 
