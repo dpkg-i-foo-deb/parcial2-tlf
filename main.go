@@ -26,6 +26,9 @@ func main() {
 				end
 				while i<5
     				i = i + 1;
+				end
+				while i<5 && i<5 && i<5
+    				i = i + 1;
 				end`
 
 	analizador.Inicializar()
