@@ -7,6 +7,6 @@ var Imprimir = []string{
 }
 
 func AgregarImpresiones() {
-	lexer_framework.Lexer.Add([]byte(`(print)\(.*\)`), lexer_framework.BuildToken("IMPRIMIR"))
+	lexer_framework.Lexer.Add([]byte(`(print)\('([a-zA-Z]*|[0-9]*|\.*)*'(,([a-zA-z]*|[0-9]*)*)+\)`), lexer_framework.BuildToken("IMPRIMIR"))
 
 }
