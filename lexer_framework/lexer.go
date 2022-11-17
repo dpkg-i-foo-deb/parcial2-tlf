@@ -27,12 +27,16 @@ func initTokens() {
 // Creates the lexer object and compiles the NFA.
 func InitLexer() {
 	Lexer = lexmachine.NewLexer()
+	Lexer.Add([]byte("( |\t|\n|\r)+"), skip)
 	//Lexer.Add([]byte(`[$]`), BuildToken("ULTIMO_INDICE"))
 	//Lexer.Add([]byte("( |\t|\n|\r)+"), skip)
 	//Lexer.Add([]byte(`ñ`), unrecognized)
 }
 
 func Compilar() error {
+
+	//Lexer.Add([]byte(``), BuildToken("COMENTARIO"))
+
 	err := Lexer.Compile()
 	if err != nil {
 		return err
