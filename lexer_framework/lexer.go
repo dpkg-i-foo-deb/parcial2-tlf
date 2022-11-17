@@ -9,11 +9,7 @@ var Tokens []string         // All of the tokens (including literals and keyword
 var TokenIds map[string]int // A map from the token names to their int ids
 var Lexer *lexmachine.Lexer // The lexer object. Use this to construct a Scanner
 func initTokens() {
-	Tokens = []string{
-		"SEPARADOR_SENTENCIAS",
-		"ULTIMO_INDICE",
-		"CICLOS",
-	}
+	Tokens = []string{}
 
 }
 
