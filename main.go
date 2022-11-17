@@ -38,6 +38,7 @@ func compilarExpresiones() {
 	tokens.AgregarSeparadorSentencias()
 	tokens.AgregarNombresVariables()
 	tokens.AgregarNumeros()
+	tokens.AgregarCadenas()
 }
 
 func compilarTokens() {
@@ -48,6 +49,7 @@ func compilarTokens() {
 	elementos = append(elementos, tokens.SeparadorSentencias...)
 	elementos = append(elementos, tokens.NombresVariables...)
 	elementos = append(elementos, tokens.Numeros...)
+	elementos = append(elementos, tokens.Cadenas...)
 
 	lexer_framework.TokenIds = make(map[string]int)
 	for i, tok := range elementos {
