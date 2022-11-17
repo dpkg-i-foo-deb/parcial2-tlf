@@ -23,6 +23,9 @@ func main() {
 				end
 				for (j = 2:n-1)
     				var1 = j;
+				end
+				while i<5
+    				i = i + 1;
 				end`
 
 	analizador.Inicializar()
