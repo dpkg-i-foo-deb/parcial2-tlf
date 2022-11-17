@@ -7,5 +7,5 @@ var Cadenas = []string{
 }
 
 func AgregarCadenas() {
-	lexer_framework.Lexer.Add([]byte(`[\'\"][a-z]*[\'\"]`), lexer_framework.BuildToken("CADENA"))
+	lexer_framework.Lexer.Add([]byte(`("|')([a-zA-Z]|[0-9])*("|')`), lexer_framework.BuildToken("CADENA"))
 }
