@@ -8,7 +8,7 @@ import (
 var LectorArchivo util.Expresion
 var ParametrosLectorArchivo util.Expresion
 
-func InicializarLector() {
+func InicializarLectorArchivo() {
 	exp, err := regexp.Compile(`mgetl`)
 
 	LectorArchivo = util.Expresion{
@@ -18,9 +18,9 @@ func InicializarLector() {
 
 	util.VerificarError(err)
 
-	exp, err = regexp.Compile(``)
+	exp, err = regexp.Compile(`\(((\/?\w+\/)*\w+\.\w+|'(\/?\w+\/)*\w+\.\w+'|\((\/?\w+\/)*\w+\.\w+\)|\('(\/?\w+\/)*\w+\.\w+'\))\)|((\/?\w+\/)*\w+\.\w+|'(\/?\w+\/)*\w+\.\w+'|\((\/?\w+\/)*\w+\.\w+\)|\('(\/?\w+\/)*\w+\.\w+'\))|\(((\/?\w+\/)*\w+\.\w+|'(\/?\w+\/)*\w+\.\w+'|\((\/?\w+\/)*\w+\.\w+\)|\('(\/?\w+\/)*\w+\.\w+'\))(,\d+)?\)`)
 
-	LectorArchivo = util.Expresion{
+	ParametrosLectorArchivo = util.Expresion{
 		Regex:     exp,
 		Categoria: "PARÁMETROS FUNCIÓN LECTURA DE ARCHIVOS",
 	}
