@@ -8,6 +8,7 @@ var Operadores = []string{
 	"OPERADOR_LOGICO",
 	"OPERADOR_ASIGNACION",
 	"OPERADOR_TERMINAL",
+	"ULTIMO_INDICE",
 }
 
 func AgregarOperadores() {
@@ -16,4 +17,5 @@ func AgregarOperadores() {
 	lexer_framework.Lexer.Add([]byte(`(<=|<|>|>=|==|~=)`), lexer_framework.BuildToken("OPERADOR_RELACIONAL"))
 	lexer_framework.Lexer.Add([]byte(`[+\-*\\\/\^]`), lexer_framework.BuildToken("OPERADOR_ARITMETICO"))
 	lexer_framework.Lexer.Add([]byte(`[;]`), lexer_framework.BuildToken("OPERADOR_TERMINAL"))
+	lexer_framework.Lexer.Add([]byte(`[$]`), lexer_framework.BuildToken("ULTIMO_INDICE"))
 }

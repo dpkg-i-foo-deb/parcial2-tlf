@@ -8,19 +8,8 @@ import (
 var Tokens []string         // All of the tokens (including literals and keywords)
 var TokenIds map[string]int // A map from the token names to their int ids
 var Lexer *lexmachine.Lexer // The lexer object. Use this to construct a Scanner
-var Unrecognized_Tokens []string
-
 func initTokens() {
-	Tokens = []string{
-		"ID",
-		"SEPARADOR_SENTENCIAS",
-		"ULTIMO_INDICE",
-		"CICLOS",
-	}
-
-	Unrecognized_Tokens = []string{
-		"NOT_VALID",
-	}
+	Tokens = []string{}
 
 }
 
@@ -28,14 +17,9 @@ func initTokens() {
 func InitLexer() {
 	Lexer = lexmachine.NewLexer()
 	Lexer.Add([]byte("( |\t|\n|\r)+"), skip)
-	//Lexer.Add([]byte(`[$]`), BuildToken("ULTIMO_INDICE"))
-	//Lexer.Add([]byte("( |\t|\n|\r)+"), skip)
-	//Lexer.Add([]byte(`ñ`), unrecognized)
 }
 
 func Compilar() error {
-
-	//Lexer.Add([]byte(``), BuildToken("COMENTARIO"))
 
 	err := Lexer.Compile()
 	if err != nil {
@@ -47,10 +31,6 @@ func Compilar() error {
 // a lexmachine.Action function which skips the match.
 func skip(*lexmachine.Scanner, *machines.Match) (interface{}, error) {
 	return nil, nil
-}
-
-func unrecognized(s *lexmachine.Scanner, m *machines.Match) (interface{}, error) {
-	return s.Token(TokenIds["NOT_VALID"], string(m.Bytes), m), nil
 }
 
 // a lexmachine.Action function with constructs a Token of the given token type by
