@@ -3,7 +3,7 @@ package main
 import (
 	"analizador-lexico/analizador"
 	"analizador-lexico/lector"
-	"fmt"
+	"analizador-lexico/salida"
 )
 
 func main() {
@@ -16,15 +16,6 @@ func main() {
 
 	analizador.Leer()
 
-	imprimir()
+	salida.EscribirArchivo()
 
-}
-
-func imprimir() {
-
-	fmt.Printf("Tipo de Token\tLexema\t\n")
-
-	for _, t := range analizador.Tokens {
-		fmt.Printf(t.Categoria + "\t" + t.Valor + "\n")
-	}
 }
