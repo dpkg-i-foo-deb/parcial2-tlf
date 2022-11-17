@@ -8,7 +8,7 @@ import (
 var NombreVariables util.Expresion
 
 func InicializarNombres() {
-	exp, err := regexp.Compile(`([a-z]|[#%!$?_].[^A-Z]).([a-zA-Z]*|[0-9]*|[#%!$?_]*)*`)
+	exp, err := regexp.Compile(`([a-z]|[#%!$?_][^A-Z])([a-zA-Z]*|[0-9]*|[#%!$?_]*)*`)
 
 	NombreVariables = util.Expresion{
 		Regex:     exp,

@@ -80,12 +80,15 @@ func compilarExpresiones() {
 	expresiones.InicializarBasura()
 	expresiones.InicializarCondicionales()
 	expresiones.InicializarImpresion()
+	expresiones.InicializarCiclos()
 
 	//Agregamos todas las expresiones regulares a un arreglo con un orden
 	Patrones = append(Patrones, expresiones.OperacionImprimir)
 	Patrones = append(Patrones, expresiones.CondicionalIf)
 	Patrones = append(Patrones, expresiones.CondicionalElse)
 	Patrones = append(Patrones, expresiones.CondicionalElseIf)
+	Patrones = append(Patrones, expresiones.CicloFor)
+	Patrones = append(Patrones, expresiones.CicloWhile)
 	Patrones = append(Patrones, expresiones.PalabraReservadaEnd)
 	Patrones = append(Patrones, expresiones.PalabraReservadaThen)
 	Patrones = append(Patrones, expresiones.Comentarios)
@@ -103,6 +106,7 @@ func compilarExpresiones() {
 	Patrones = append(Patrones, expresiones.Cadena)
 	Patrones = append(Patrones, expresiones.SaltoLinea)
 	Patrones = append(Patrones, expresiones.Parametros_Condicional)
+	Patrones = append(Patrones, expresiones.ParametroCicloFor)
 	Patrones = append(Patrones, expresiones.ParametrosImprimir)
 
 }
