@@ -65,21 +65,29 @@ func analizar() {
 	for tok, err, eof := s.Next(); !eof; tok, err, eof = s.Next() {
 		if ui, is := err.(*machines.UnconsumedInput); is {
 			// to skip bad token do:
-			s.TC = ui.FailTC
-			log.Fatal(err)
-			//fmt.Print("No reconocido")
-			break
 
-		} else if err != nil {
-			log.Fatal(err)
+			//log.Fatal(err)
+			controlarNoReconocido(ui.Text[s.TC])
+			s.TC = ui.FailTC
+
+		} else {
+			if err != nil {
+				log.Fatal(err)
+			} else {
+				token := tok.(*lexmachine.Token)
+				fmt.Printf("%-7v | %-10v | %v:%v-%v:%v\n",
+					lexer_framework.Tokens[token.Type],
+					string(token.Lexeme),
+					token.StartLine,
+					token.StartColumn,
+					token.EndLine,
+					token.EndColumn)
+			}
 		}
-		token := tok.(*lexmachine.Token)
-		fmt.Printf("%-7v | %-10v | %v:%v-%v:%v\n",
-			lexer_framework.Tokens[token.Type],
-			string(token.Lexeme),
-			token.StartLine,
-			token.StartColumn,
-			token.EndLine,
-			token.EndColumn)
+
 	}
+}
+
+func controlarNoReconocido(token byte) {
+	fmt.Println("No Reconocido " + string(token))
 }
