@@ -3,37 +3,31 @@ package salida
 import (
 	"analizador-lexico/analizador"
 	"analizador-lexico/util"
-	"bufio"
 	"errors"
 	"fmt"
 	"os"
 )
 
-var archivo *os.File
+var contenido []byte
 
 func EscribirArchivo() {
-	defer archivo.Close()
+
+	var s string
 
 	if _, err := os.Stat("salida.txt"); errors.Is(err, os.ErrNotExist) {
-		archivo, err = os.Create("salida.txt")
+		_, err = os.Create("salida.txt")
 
 		util.VerificarError(err)
 	}
 
-	var err error
+	s = fmt.Sprintf("Tipo de Token" + "\t" + "Lexema\t\n")
 
-	archivo, err = os.Open("salida.txt")
-
-	w := bufio.NewWriter(archivo)
-
-	util.VerificarError(err)
-
-	fmt.Fprintf(w, "Tipo de Token\tLexema\t\n")
+	contenido = append(contenido, []byte(s)...)
 
 	for _, t := range analizador.Tokens {
-		fmt.Fprintf(w, t.Categoria+"\t"+t.Valor+"\n")
-		fmt.Println(t.Categoria)
+		s = fmt.Sprintf(t.Categoria + "\t" + t.Valor + "\n")
+		contenido = append(contenido, []byte(s)...)
 	}
 
-	w.Flush()
+	os.WriteFile("salida.txt", contenido, 0644)
 }
