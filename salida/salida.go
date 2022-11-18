@@ -4,7 +4,6 @@ import (
 	"analizador-lexico/analizador"
 	"analizador-lexico/util"
 	"errors"
-	"fmt"
 	"os"
 )
 
@@ -12,7 +11,7 @@ var contenido []byte
 
 func EscribirArchivo() {
 
-	var s string
+	contenido = append(contenido, []byte("Tipo de Token"+"\t"+"Lexema\t\n")...)
 
 	if _, err := os.Stat("salida.txt"); errors.Is(err, os.ErrNotExist) {
 		_, err = os.Create("salida.txt")
@@ -20,14 +19,12 @@ func EscribirArchivo() {
 		util.VerificarError(err)
 	}
 
-	s = fmt.Sprintf("Tipo de Token" + "\t" + "Lexema\t\n")
-
-	contenido = append(contenido, []byte(s)...)
-
 	for _, t := range analizador.Tokens {
-		s = fmt.Sprintf(t.Categoria + "\t" + t.Valor + "\n")
-		contenido = append(contenido, []byte(s)...)
+		contenido = append(contenido, []byte(t.Categoria+"\t"+t.Valor+"\n")...)
 	}
 
-	os.WriteFile("salida.txt", contenido, 0644)
+	err := os.WriteFile("salida.txt", contenido, 0644)
+
+	util.VerificarError(err)
+
 }
