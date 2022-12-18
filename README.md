@@ -11,6 +11,14 @@
 - La totalidad del arreglo es analizado por todas las expresiones regulares que generamos para scilab
 - Los tokens y sus categorías son almacenadas en otro arreglo de bytes el cual es enviado al archivo de salida
 
+# Dado el siguiente código fuente...
+
+![](capturas-pantalla/entrada.png?raw=true)
+
+# El analizador genera la siguiente salida
+
+![](capturas-pantalla/salida.png?raw=true)
+
 # Los patrones
 
 Los patrones son una estructura que contiene un puntero a una expresión regular compilada, así como una cadena
